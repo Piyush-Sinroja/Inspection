@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="CDAnswerChoices" representedClassName="CDAnswerChoices" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="score" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="cdQuestions" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDQuestions" inverseName="cdAnswerChoices" inverseEntity="CDQuestions"/>
+    </entity>
+    <entity name="CDArea" representedClassName="CDArea" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="cdInspectionData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDInspectionData" inverseName="cdArea" inverseEntity="CDInspectionData"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="CDCategories" representedClassName="CDCategories" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="isExpand" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="cdQuestions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDQuestions" inverseName="cdCategories" inverseEntity="CDQuestions"/>
+        <relationship name="cdSurvey" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDSurvey" inverseName="cdCategories" inverseEntity="CDSurvey"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="CDInspectionData" representedClassName="CDInspectionData" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="cdArea" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDArea" inverseName="cdInspectionData" inverseEntity="CDArea"/>
+        <relationship name="cdInspectionType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDInspectionType" inverseName="cdInspectionData" inverseEntity="CDInspectionType"/>
+        <relationship name="cdSurvey" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDSurvey" inverseName="cdInspectionData" inverseEntity="CDSurvey"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="CDInspectionType" representedClassName="CDInspectionType" syncable="YES">
+        <attribute name="access" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="cdInspectionData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDInspectionData" inverseName="cdInspectionType" inverseEntity="CDInspectionData"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="CDQuestions" representedClassName="CDQuestions" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="selectedAnswerChoiceId" optional="YES" attributeType="String"/>
+        <relationship name="cdAnswerChoices" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDAnswerChoices" inverseName="cdQuestions" inverseEntity="CDAnswerChoices"/>
+        <relationship name="cdCategories" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDCategories" inverseName="cdQuestions" inverseEntity="CDCategories"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="CDSurvey" representedClassName="CDSurvey" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="cdCategories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDCategories" inverseName="cdSurvey" inverseEntity="CDCategories"/>
+        <relationship name="cdInspectionData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDInspectionData" inverseName="cdSurvey" inverseEntity="CDInspectionData"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+</model>
