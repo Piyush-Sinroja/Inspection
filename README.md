@@ -1,2 +1,2 @@
 # Inspection
- Sample Login, Registe, Core Data
+ Sample Login, Register, Core Data
