@@ -7,7 +7,6 @@
 
 import UIKit
 
-// https://www.clappia.com/blog/automated-field-inspection
 class HomeViewController: UIViewController {
     
     // MARK: - IBOutlets
